@@ -1,38 +1,50 @@
-﻿namespace Lesson_2
+﻿using System.Collections.Concurrent;
+namespace Lesson_2
 {
     internal class MyThreadPool
     {
-        private static readonly Queue<Thread> _queue = new Queue<Thread>();
+        private static readonly ConcurrentQueue<Thread> _queue = new();
         
         public static readonly int _maxThreads = 10;
         
-        public static void AddThread(Action func)
+        public static Thread GetThread(Action func)
         {
-            if (_queue.Count > _maxThreads)
+            if (!_queue.IsEmpty)
             {
-                throw new Exception($"MyThreadPool is full. Max threads {_maxThreads}");
+                if (!_queue.ElementAt(0).IsAlive)
+                {
+                    _queue.TryDequeue(out Thread thread);
+                    return thread;
+                }
             }
-            _queue.Enqueue(new Thread(new ThreadStart(func)) { IsBackground = false });
-        }
-        
-        public static void ClearMyThreadPool()
-        {
-            _queue.Clear();
+            if (_queue.Count >= _maxThreads)
+            {
+                throw new ArgumentOutOfRangeException($"MyThreadPool overloaded. Max limit {_maxThreads}");
+            }
+            var newThread = new Thread(new ThreadStart(func));
+            _queue.Enqueue(newThread);
+            return newThread;
         }
 
-        public static void Run()
-        {
-            if (_queue.Count > 0)
+        public static void ReleaseThread(Thread thread)
+        {            
+            if (thread.IsAlive)
             {
-                foreach (var thread in _queue)
-                {
-                    thread.Start();                    
-                }
-            }            
-            else
-            {
-               Console.WriteLine("ThreadPool is emty");
+                return;              
             }
+            _queue.Enqueue(thread);            
+        }       
+              
+
+        public static void Run(Action func)
+        {
+            var newThread = GetThread(func);
+            newThread.Start();
+            foreach (var thread in _queue)
+                {
+                    ReleaseThread(thread);                    
+                }
+            
         }
     }
 }

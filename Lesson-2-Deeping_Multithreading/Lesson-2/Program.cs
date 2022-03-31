@@ -1,6 +1,16 @@
 ﻿using Lesson_2;
 
-MyThreadPool.AddThread(() => Console.WriteLine("Added in MyThreadPool"));
+for (int i = 0; i < 10; i++)
+{
+    MyThreadPool.Run(WaitCallback);
+    
+}
 
-MyThreadPool.Run();
+static void WaitCallback()
+{
+    Console.WriteLine($"{Thread.CurrentThread.ManagedThreadId}");
+    Thread.Sleep(1000);
+}
+
+
 
