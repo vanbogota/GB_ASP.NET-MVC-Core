@@ -17,18 +17,16 @@ namespace Lesson_1_4
                 {
                     for (int j = 0; j < 1000; j++)
                     {
-                        lock (listCover)
-                        {
-                            listCover.MyAdd(j);
-                        }
-                        
+                        listCover.MyAdd(j);                        
                     }
                 });
                 thread.IsBackground = true;
                 thread.Start();
+                thread.Join();
             }
             Console.WriteLine("Program finish");
-            Console.WriteLine(listCover.MyProperty.Count);
+            var count = listCover.ThreadList.Count;
+            Console.WriteLine(count);
         }      
         
     }

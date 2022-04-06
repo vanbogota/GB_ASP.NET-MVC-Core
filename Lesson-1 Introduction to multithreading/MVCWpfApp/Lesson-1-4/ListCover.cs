@@ -8,23 +8,23 @@ namespace Lesson_1_4
 {
     public class ListCover<T>
     {       
-        public List<T> MyProperty { get; set; }
+        public List<T> ThreadList { get; set; }
         public ListCover()
         {
-            MyProperty = new List<T>();
+            ThreadList = new List<T>();
         }
         public void MyAdd(T item)
         {
-            lock (MyProperty)
+            lock (ThreadList)
             {
-                MyProperty.Add(item);
+                ThreadList.Add(item);
             }                       
         }
         public void MyDelete(T item)
         {
-            lock (MyProperty)
+            lock (ThreadList)
             {
-                MyProperty.Remove(item);
+                ThreadList.Remove(item);
             }            
         }
     }
