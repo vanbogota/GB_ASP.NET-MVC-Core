@@ -22,9 +22,12 @@ namespace Lesson_1
 
         private string FibonachiNumberString(int timeout)
         {
-            _fibNum = _num1 + _num2;
-            _num1 = _num2;
-            _num2 = _fibNum;
+            lock (this)
+            {
+                _fibNum = _num1 + _num2;
+                _num1 = _num2;
+                _num2 = _fibNum;
+            }            
 
             Thread.Sleep(timeout * 1000);
 
