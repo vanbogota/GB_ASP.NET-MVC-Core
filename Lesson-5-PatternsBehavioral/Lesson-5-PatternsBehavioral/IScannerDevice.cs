@@ -12,6 +12,6 @@ namespace Lesson_5_PatternsBehavioral
     {
         int ProcessorLoadPersent { get; set; }
         int MemoryLoadBytes { get; set; }
-        Stream Scan(string inputFilePath);        
+        Stream Scan();        
     }
 }
