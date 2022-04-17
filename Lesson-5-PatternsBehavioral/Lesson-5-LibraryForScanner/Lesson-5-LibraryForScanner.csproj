@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lesson-5-PatternsBehavioral\Lesson-5-PatternsBehavioral.csproj" />
+    <ProjectReference Include="..\Lesson-5-PatternsBehavioral\Lesson-6-ScannerAutofac.csproj" />
   </ItemGroup>
 
 </Project>

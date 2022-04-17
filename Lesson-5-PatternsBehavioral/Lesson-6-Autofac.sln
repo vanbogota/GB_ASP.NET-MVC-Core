@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson-5-PatternsBehavioral", "Lesson-5-PatternsBehavioral\Lesson-5-PatternsBehavioral.csproj", "{3BF6DF31-87E1-46F5-8ABB-60D384A0595F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lesson-6-ScannerAutofac", "Lesson-5-PatternsBehavioral\Lesson-6-ScannerAutofac.csproj", "{3BF6DF31-87E1-46F5-8ABB-60D384A0595F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson-5-LibraryForScanner", "Lesson-5-LibraryForScanner\Lesson-5-LibraryForScanner.csproj", "{3E8F6074-59D2-457A-86F1-54CFFF030996}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lesson-5-LibraryForScanner", "Lesson-5-LibraryForScanner\Lesson-5-LibraryForScanner.csproj", "{3E8F6074-59D2-457A-86F1-54CFFF030996}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
