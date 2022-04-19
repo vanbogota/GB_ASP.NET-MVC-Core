@@ -1,12 +1,9 @@
-﻿using Lesson_5_PatternsBehavioral;
-using System.Text;
-
-namespace Lesson_5_LibraryForScanner
+﻿namespace Lesson_6_ScannerAutofac
 {
     public class ScannerDeviceContext
     {
         private IScannerDevice _scannerDevice;
-        private IScannerOutputStrategy _outputStrategy;
+        private IScannerOutputStrategy? _outputStrategy;
 
         public ScannerDeviceContext(IScannerDevice scannerDevice)
         {
@@ -22,9 +19,17 @@ namespace Lesson_5_LibraryForScanner
         {
             if (string.IsNullOrEmpty(outputFileName))
             {
-                throw new ArgumentNullException($"OutputFileName can't be null");
+                throw new ArgumentNullException("OutputFileName can't be null");
             }
-
+            if(_outputStrategy == null)
+            {
+                throw new ArgumentNullException("OutputSrategy can't be null");
+            }
+            if(_scannerDevice == null)
+            {
+                throw new ArgumentNullException("ScannerDevice can't be null");
+            }
+            
             _outputStrategy.ScanAndSave(_scannerDevice, outputFileName);
 
             string[] info = {

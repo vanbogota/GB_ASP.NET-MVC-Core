@@ -1,4 +1,4 @@
-﻿using Lesson_5_PatternsBehavioral;
+﻿using Lesson_6_ScannerAutofac;
 
 namespace Lesson_5_LibraryForScanner
 {
