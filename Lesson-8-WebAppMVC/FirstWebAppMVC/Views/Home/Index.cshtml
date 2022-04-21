@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    var company = new CompanyViewModel() { CompanyName="ООО \"Рога и копыта\"", CompanyPhone="555-55-55" };
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <p>Название нашей компании: @company.CompanyName</p>
+    <p>Телефон для связи: @company.CompanyPhone</p>
+
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
