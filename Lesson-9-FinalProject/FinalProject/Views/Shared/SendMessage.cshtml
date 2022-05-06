@@ -1,0 +1,12 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "Message";
+}
+<div class="bg-primary p-2 text-white text-center">
+    <h2>Fill the form below for sending message.</h2>
+</div>
+<form asp-action="" method="post" class="m-4">
+    <label>To:</label>
+    <input asp-for="To" class="form-control" />
+
+</form>
