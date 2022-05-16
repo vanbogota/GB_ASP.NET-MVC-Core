@@ -15,15 +15,14 @@ namespace FinalProject.Controllers
             _mailGatewayOptions = mailGatewayOptions;
         }
         
-        public async Task<IActionResult> SendMessage(Message message) 
+        public async Task<IActionResult> SendMessage() 
         {
             SendMessageService sendMessageService = new(_mailGatewayOptions);
-            await sendMessageService.SendMessageAsync(message);
-            _logger.LogInformation($"{DateTime.UtcNow} Message send");
+            await sendMessageService.SendReportAsync();
+
+            _logger.LogInformation($"{DateTime.UtcNow} Report send");
+
             return RedirectToAction("Index");
         }
-
-        public IActionResult SendMessage() => View();
-        
     }
 }

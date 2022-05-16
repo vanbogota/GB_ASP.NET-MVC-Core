@@ -4,5 +4,5 @@ namespace FinalProject.Interfaces;
 
 public interface ISendMessageService
 {
-    Task SendMessageAsync(Message message);
+    Task SendReportAsync();
 }

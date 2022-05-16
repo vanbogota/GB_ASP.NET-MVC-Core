@@ -7,28 +7,33 @@ namespace FinalProject.Services
     public class SendMessageService : ISendMessageService
     {
         private MailGatewayOptions _mailGatewayOptions;
-
+        
+        private ReportRazor _report;
         public SendMessageService(MailGatewayOptions mailGatewayOptions)
         {
-            _mailGatewayOptions = mailGatewayOptions;
+            _mailGatewayOptions = mailGatewayOptions;            
+            _report = new ReportRazor();
         }
 
-        public async Task SendMessageAsync(Message message)
+        public async Task SendReportAsync()
         {
-            MessageGateway messageGateway = new MessageGateway(_mailGatewayOptions);
-            try
+            _report.CreationDate = DateTime.Now;
+            _report.Description = $"Test Report {DateTime.Now}";
+            var temp = _report.Create();
+
+            Message message = new Message()
+            {
+                To = "user@user.com",
+                Name = "UserName",
+                Subject = $"Report {_report.ReportNumber}",
+                Body = temp,
+                IsHtml = false
+            };
+
+            using (MessageGateway messageGateway = new MessageGateway(_mailGatewayOptions))
             {
                 await messageGateway.SendMessageAsync(message);
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                messageGateway.Dispose();
-            }            
-        }       
+            }           
+        }        
     }
 }
