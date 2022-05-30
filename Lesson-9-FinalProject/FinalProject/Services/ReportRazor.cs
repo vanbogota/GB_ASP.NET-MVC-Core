@@ -1,6 +1,5 @@
-﻿using FinalProject.Interfaces;
+﻿using FinalProject.Models.Entities;
 using RazorEngine;
-using RazorEngine.Configuration;
 using RazorEngine.Templating;
 
 namespace FinalProject.Services;

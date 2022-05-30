@@ -1,13 +1,12 @@
-﻿using FinalProject.Interfaces;
-using FinalProject.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using FinalProject.Models;
+using FinalProject.Models.Entities;
+using FinalProject.Repositories;
 
 namespace FinalProject.Services
 {
     public class SendMessageService : ISendMessageService
     {
         private MailGatewayOptions _mailGatewayOptions;
-        
         private ReportRazor _report;
         public SendMessageService(MailGatewayOptions mailGatewayOptions)
         {
@@ -15,25 +14,25 @@ namespace FinalProject.Services
             _report = new ReportRazor();
         }
 
-        public async Task SendReportAsync()
+        public async Task SendReportAsync(User user)
         {
-            _report.CreationDate = DateTime.Now;
-            _report.Description = $"Test Report {DateTime.Now}";
-            var temp = _report.Create();
+                _report.CreationDate = DateTime.Now;
+                _report.Description = $"Report at {DateTime.Now}";
+                var temp = _report.Create();
 
-            Message message = new Message()
-            {
-                To = "user@user.com",
-                Name = "UserName",
-                Subject = $"Report {_report.ReportNumber}",
-                Body = temp,
-                IsHtml = false
-            };
+                Message message = new Message()
+                {
+                    To = user.Email,
+                    Name = user.Name,
+                    Subject = $"Report {_report.ReportNumber}",
+                    Body = temp,
+                    IsHtml = false
+                };
 
-            using (MessageGateway messageGateway = new MessageGateway(_mailGatewayOptions))
-            {
-                await messageGateway.SendMessageAsync(message);
-            }           
-        }        
+                using (MessageGateway messageGateway = new MessageGateway(_mailGatewayOptions))
+                {
+                    await messageGateway.SendMessageAsync(message);
+                }
+        }
     }
 }

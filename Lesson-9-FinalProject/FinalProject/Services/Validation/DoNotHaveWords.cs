@@ -1,4 +1,4 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace FinalProject.Services.Validation

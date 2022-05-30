@@ -1,4 +1,4 @@
-﻿namespace FinalProject.Interfaces;
+﻿namespace FinalProject.Models.Entities;
 public interface IReport
 {
     int ReportNumber { get; }

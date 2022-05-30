@@ -1,23 +1,31 @@
 ﻿using FinalProject.Models;
+using FinalProject.Repositories;
 using FinalProject.Services;
 using Quartz;
 
 namespace FinalProject.Jobs
 {
-    //остановился тута, нужно добавить сучностей
     public class SendMessageJob : IJob
     {
-        MailGatewayOptions _mailGatewayOptions;
-        public SendMessageJob(MailGatewayOptions mailGatewayOptions)
+        private readonly MailGatewayOptions _mailGatewayOptions;
+        private readonly IUserRepository _userRepository;
+
+        public SendMessageJob(MailGatewayOptions mailGatewayOptions, IUserRepository userRepository)
         {
             _mailGatewayOptions = mailGatewayOptions;
+            _userRepository = userRepository;
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
-            SendMessageService sendMessageService = new(_mailGatewayOptions);
+            var users = _userRepository.GetAll();
 
-            await sendMessageService.SendReportAsync();            
+            SendMessageService sendMessage = new(_mailGatewayOptions);
+
+            foreach (var user in users)
+            {
+                await sendMessage.SendReportAsync(user);
+            }                        
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.Models.Entities;
 using MailKit.Net.Smtp;
 using MimeKit;
 

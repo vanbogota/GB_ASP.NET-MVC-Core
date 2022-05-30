@@ -7,18 +7,17 @@ namespace FinalProject.Controllers
     public class MessageController : Controller
     {
         private readonly ILogger<MessageController> _logger;
-        private readonly MailGatewayOptions _mailGatewayOptions;
+        private readonly SendMessageService _messageService;
 
-        public MessageController(ILogger<MessageController> logger, MailGatewayOptions mailGatewayOptions)
+        public MessageController(ILogger<MessageController> logger, SendMessageService messageService)
         {
-            _logger = logger;
-            _mailGatewayOptions = mailGatewayOptions;
+            _logger = logger;            
+            _messageService = messageService;
         }
         
-        public async Task<IActionResult> SendMessage() 
+        public async Task<IActionResult> SendMessage(User user) 
         {
-            SendMessageService sendMessageService = new(_mailGatewayOptions);
-            await sendMessageService.SendReportAsync();
+            await _messageService.SendReportAsync(user);
 
             _logger.LogInformation($"{DateTime.UtcNow} Report send");
 

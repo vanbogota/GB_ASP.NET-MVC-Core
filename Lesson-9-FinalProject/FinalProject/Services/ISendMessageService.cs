@@ -1,8 +1,8 @@
 ﻿using FinalProject.Models;
 
-namespace FinalProject.Interfaces;
+namespace FinalProject.Services;
 
 public interface ISendMessageService
 {
-    Task SendReportAsync();
+    Task SendReportAsync(User user);
 }

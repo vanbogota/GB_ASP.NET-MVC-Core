@@ -1,4 +1,4 @@
-﻿using FinalProject.Interfaces;
+﻿using FinalProject.Models.Entities;
 
 namespace FinalProject.Models
 {
@@ -7,7 +7,5 @@ namespace FinalProject.Models
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
-        public bool IsDeleted { get; set; }
-
     }
 }

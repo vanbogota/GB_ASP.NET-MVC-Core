@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FinalProject.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace FinalProject.Models
+namespace FinalProject.Services
 {
     public class DataContext : DbContext
     {
@@ -8,6 +9,6 @@ namespace FinalProject.Models
         {
         }
 
-        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<User> Users { get; set; }
     }
 }
