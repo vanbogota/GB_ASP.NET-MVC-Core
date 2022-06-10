@@ -1,24 +1,26 @@
-﻿using FinalProject.Models;
-using FinalProject.Repositories;
+﻿using FinalProject.Repositories;
 using FinalProject.Services;
 using Quartz;
+using Identity.DAL.Context;
+using Microsoft.AspNetCore.Identity;
+using Identity.DAL.Entities;
 
 namespace FinalProject.Jobs
 {
     public class SendMessageJob : IJob
     {
         private readonly MailGatewayOptions _mailGatewayOptions;
-        private readonly IUserRepository _userRepository;
+        private readonly IdentityDB _dB;
 
-        public SendMessageJob(MailGatewayOptions mailGatewayOptions, IUserRepository userRepository)
+        public SendMessageJob(MailGatewayOptions mailGatewayOptions, IdentityDB dB)
         {
             _mailGatewayOptions = mailGatewayOptions;
-            _userRepository = userRepository;
+            _dB = dB;
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
-            var users = _userRepository.GetAll();
+            var users = _dB.Users.ToList();
 
             SendMessageService sendMessage = new(_mailGatewayOptions);
 

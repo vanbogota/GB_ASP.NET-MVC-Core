@@ -4,9 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FinalProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FinalProject.styles.css" asp-append-version="true" />
+    <partial name="_Styles" />
 </head>
 <body>
     <header>
@@ -22,9 +20,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="User" asp-action="Index">Registration</a>
-                        </li>                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="" asp-action="">@User.Identity.Name</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">LogOut</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Message" asp-action="SendMessage" asp-route-user="@User">Send Report</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Registration</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">SignIn</a>
+                            </li>
+                        }                         
                     </ul>
                 </div>
             </div>
@@ -41,9 +57,7 @@
             &copy; 2022 - FinalProject
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <partial name="_Scripts"/>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

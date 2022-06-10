@@ -1,6 +1,5 @@
-﻿using FinalProject.Models;
-using FinalProject.Models.Entities;
-using FinalProject.Repositories;
+﻿using FinalProject.Models.Entities;
+using Identity.DAL.Entities;
 
 namespace FinalProject.Services
 {
@@ -23,7 +22,7 @@ namespace FinalProject.Services
                 Message message = new Message()
                 {
                     To = user.Email,
-                    Name = user.Name,
+                    Name = user.UserName,
                     Subject = $"Report {_report.ReportNumber}",
                     Body = temp,
                     IsHtml = false

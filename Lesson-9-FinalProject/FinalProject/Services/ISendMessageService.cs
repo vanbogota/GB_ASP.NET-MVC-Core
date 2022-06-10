@@ -1,4 +1,4 @@
-﻿using FinalProject.Models;
+﻿using Identity.DAL.Entities;
 
 namespace FinalProject.Services;
 
