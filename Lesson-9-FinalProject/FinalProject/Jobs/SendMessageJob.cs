@@ -1,9 +1,6 @@
-﻿using FinalProject.Repositories;
-using FinalProject.Services;
+﻿using FinalProject.Services;
 using Quartz;
 using Identity.DAL.Context;
-using Microsoft.AspNetCore.Identity;
-using Identity.DAL.Entities;
 
 namespace FinalProject.Jobs
 {

@@ -6,7 +6,7 @@ namespace FinalProject.Models
     public class UserViewModel
     {
         [HiddenInput(DisplayValue = false)]
-        public int Id { get; set; }
+        public string Id { get; set; } = null!;
         
         [Required(ErrorMessage = "Name is mandatory")]
         [StringLength(100, MinimumLength = 2, ErrorMessage ="Max length 100 symbols, min length is 2 symbols")]
@@ -14,6 +14,8 @@ namespace FinalProject.Models
 
         [Required(ErrorMessage = "Email is mandatory")]
         [EmailAddress]
-        public string Email { get; set; } = null!;        
+        public string Email { get; set; } = null!;
+
+        public string? PasswordHash { get; set; }        
     }
 }

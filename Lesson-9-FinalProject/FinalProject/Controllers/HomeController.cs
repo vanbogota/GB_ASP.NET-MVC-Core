@@ -1,6 +1,4 @@
 ﻿using FinalProject.Models;
-using FinalProject.Repositories;
-using FinalProject.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

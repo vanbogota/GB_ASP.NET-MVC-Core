@@ -21,9 +21,10 @@ namespace FinalProject.Controllers
             this.userManager = userManager;
         }
         
-        public async Task<IActionResult> SendMessage(User user) 
+        public async Task<IActionResult> SendMessage(string userName) 
         {
-            var temp = await userManager.FindByIdAsync(user.Id);
+            var temp = await userManager.FindByNameAsync(userName);
+            
             await _messageService.SendReportAsync(temp);
 
             _logger.LogInformation($"{DateTime.UtcNow} Report send");

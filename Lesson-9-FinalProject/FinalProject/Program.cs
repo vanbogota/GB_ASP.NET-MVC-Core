@@ -50,10 +50,10 @@ builder.Services.AddSingleton<ISendMessageService,SendMessageService>();
 builder.Services.AddSingleton<MessageGateway>();
 builder.Services.AddSingleton(new MailGatewayOptions()
 {
-    Password = "gWYF5w9TjSPE7AkJ4GNb",
-    SenderName = "vanbog@mail.ru",
+    Password = "****",
+    SenderName = "****@mail.ru",
     SMTPServer = "smtp.mail.ru",
-    Sender = "Report server",
+    Sender = "*****",
     Port = 465
 });
 builder.Services.AddSingleton<IJobFactory, SingletonJobFactory>();

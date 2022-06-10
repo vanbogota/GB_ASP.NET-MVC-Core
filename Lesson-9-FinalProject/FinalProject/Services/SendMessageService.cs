@@ -14,7 +14,7 @@ namespace FinalProject.Services
         }
 
         public async Task SendReportAsync(User user)
-        {
+        {            
                 _report.CreationDate = DateTime.Now;
                 _report.Description = $"Report at {DateTime.Now}";
                 var temp = _report.Create();
